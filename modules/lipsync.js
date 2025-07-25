@@ -6,14 +6,14 @@ import {LipsyncFr} from "./lipsync-fr.mjs";
 export function lipsyncGetProcessor(lang) {
     switch (lang) {
         case "en":
-            return LipsyncEn();
+            return new LipsyncEn();
         case "fi":
-            return LipsyncFi();
+            return new LipsyncFi();
         case "lt":
-            return LipsyncLt();
+            return new LipsyncLt();
         case "fr":
-            return LipsyncFr();
+            return new LipsyncFr();
         default:
-            return LipsyncEn();
+            return new LipsyncEn();
     }
 }
