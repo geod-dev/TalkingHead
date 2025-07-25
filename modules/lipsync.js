@@ -1,6 +1,7 @@
 import {LipsyncEn} from "./lipsync-en.mjs";
 import {LipsyncFi} from "./lipsync-fi.mjs";
 import {LipsyncLt} from "./lipsync-lt.mjs";
+import {LipsyncFr} from "./lipsync-fr.mjs";
 
 export function lipsyncGetProcessor(lang) {
     switch (lang) {
@@ -10,6 +11,8 @@ export function lipsyncGetProcessor(lang) {
             return LipsyncFi();
         case "lt":
             return LipsyncLt();
+        case "fr":
+            return LipsyncFr();
         default:
             return LipsyncEn();
     }
