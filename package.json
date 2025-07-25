@@ -4,7 +4,7 @@
   "description": "Talking Head (3D): A JavaScript class for real-time lip-sync using Ready Player Me full-body 3D avatars.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
-  "types": "dist/index.d.ts",
+  "types": "types/talkinghead.d.ts",
   "scripts": {
     "build": "rollup -c"
   },
