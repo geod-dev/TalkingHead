@@ -71065,28 +71065,28 @@ function lipsyncGetProcessor(lang) {
 }
 
 /**
-* MIT License
-*
-* Copyright (c) 2024 Mika Suominen
-*
-* Permission is hereby granted, free of charge, to any person obtaining a copy
-* of this software and associated documentation files (the "Software"), to deal
-* in the Software without restriction, including without limitation the rights
-* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-* copies of the Software, and to permit persons to whom the Software is
-* furnished to do so, subject to the following conditions:
-*
-* The above copyright notice and this permission notice shall be included in all
-* copies or substantial portions of the Software.
-*
-* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-* SOFTWARE.
-*/
+ * MIT License
+ *
+ * Copyright (c) 2024 Mika Suominen
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 
 const workletUrl = new URL('./playback-worklet.js', import.meta.url);
 
@@ -71105,73 +71105,73 @@ new Vector3(0, 1, 0);
 new Vector3(0, 0, 1);
 class TalkingHead {
   /**
-  * Avatar.
-  * @typedef {Object} Avatar
-  * @property {string} url URL for the GLB file
-  * @property {string} [body] Body form 'M' or 'F'
-  * @property {string} [lipsyncLang] Lip-sync language, e.g. 'fi', 'en'
-  * @property {string} [ttsLang] Text-to-speech language, e.g. "fi-FI"
-  * @property {voice} [ttsVoice] Voice name.
-  * @property {numeric} [ttsRate] Voice rate.
-  * @property {numeric} [ttsPitch] Voice pitch.
-  * @property {numeric} [ttsVolume] Voice volume.
-  * @property {string} [avatarMood] Initial mood.
-  * @property {boolean} [avatarMute] If true, muted.
-  * @property {numeric} [avatarIdleEyeContact] Eye contact while idle [0,1]
-  * @property {numeric} [avatarIdleHeadMove] Eye contact while idle [0,1]
-  * @property {numeric} [avatarSpeakingEyeContact] Eye contact while speaking [0,1]
-  * @property {numeric} [avatarSpeakingHeadMove] Eye contact while speaking [0,1]
-  * @property {Object[]} [modelDynamicBones] Config for Dynamic Bones feature
-  */
+   * Avatar.
+   * @typedef {Object} Avatar
+   * @property {string} url URL for the GLB file
+   * @property {string} [body] Body form 'M' or 'F'
+   * @property {string} [lipsyncLang] Lip-sync language, e.g. 'fi', 'en'
+   * @property {string} [ttsLang] Text-to-speech language, e.g. "fi-FI"
+   * @property {voice} [ttsVoice] Voice name.
+   * @property {numeric} [ttsRate] Voice rate.
+   * @property {numeric} [ttsPitch] Voice pitch.
+   * @property {numeric} [ttsVolume] Voice volume.
+   * @property {string} [avatarMood] Initial mood.
+   * @property {boolean} [avatarMute] If true, muted.
+   * @property {numeric} [avatarIdleEyeContact] Eye contact while idle [0,1]
+   * @property {numeric} [avatarIdleHeadMove] Eye contact while idle [0,1]
+   * @property {numeric} [avatarSpeakingEyeContact] Eye contact while speaking [0,1]
+   * @property {numeric} [avatarSpeakingHeadMove] Eye contact while speaking [0,1]
+   * @property {Object[]} [modelDynamicBones] Config for Dynamic Bones feature
+   */
 
   /**
-  * Loading progress.
-  * @callback progressfn
-  * @param {string} url URL of the resource
-  * @param {Object} event Progress event
-  * @param {boolean} event.lengthComputable If false, total is not known
-  * @param {number} event.loaded Number of loaded items
-  * @param {number} event.total Number of total items
-  */
+   * Loading progress.
+   * @callback progressfn
+   * @param {string} url URL of the resource
+   * @param {Object} event Progress event
+   * @param {boolean} event.lengthComputable If false, total is not known
+   * @param {number} event.loaded Number of loaded items
+   * @param {number} event.total Number of total items
+   */
 
   /**
-  * Callback when new subtitles have been written to the DOM node.
-  * @callback subtitlesfn
-  * @param {Object} node DOM node
-  */
+   * Callback when new subtitles have been written to the DOM node.
+   * @callback subtitlesfn
+   * @param {Object} node DOM node
+   */
 
   /**
-  * Callback when the speech queue processes this marker item.
-  * @callback markerfn
-  */
+   * Callback when the speech queue processes this marker item.
+   * @callback markerfn
+   */
 
   /**
-  * Audio object.
-  * @typedef {Object} Audio
-  * @property {ArrayBuffer|ArrayBuffer[]} audio Audio buffer or array of buffers
-  * @property {string[]} words Words
-  * @property {number[]} wtimes Starting times of words
-  * @property {number[]} wdurations Durations of words
-  * @property {string[]} [visemes] Oculus lip-sync viseme IDs
-  * @property {number[]} [vtimes] Starting times of visemes
-  * @property {number[]} [vdurations] Durations of visemes
-  * @property {string[]} [markers] Timed callback functions
-  * @property {number[]} [mtimes] Starting times of markers
-  */
+   * Audio object.
+   * @typedef {Object} Audio
+   * @property {ArrayBuffer|ArrayBuffer[]} audio Audio buffer or array of buffers
+   * @property {string[]} words Words
+   * @property {number[]} wtimes Starting times of words
+   * @property {number[]} wdurations Durations of words
+   * @property {string[]} [visemes] Oculus lip-sync viseme IDs
+   * @property {number[]} [vtimes] Starting times of visemes
+   * @property {number[]} [vdurations] Durations of visemes
+   * @property {string[]} [markers] Timed callback functions
+   * @property {number[]} [mtimes] Starting times of markers
+   */
 
   /**
-  * Lip-sync object.
-  * @typedef {Object} Lipsync
-  * @property {string[]} visemes Oculus lip-sync visemes
-  * @property {number[]} times Starting times in relative units
-  * @property {number[]} durations Durations in relative units
-  */
+   * Lip-sync object.
+   * @typedef {Object} Lipsync
+   * @property {string[]} visemes Oculus lip-sync visemes
+   * @property {number[]} times Starting times in relative units
+   * @property {number[]} durations Durations in relative units
+   */
 
   /**
-  * @constructor
-  * @param {Object} node DOM element of the avatar
-  * @param {Object} [opt=null] Global/default options
-  */
+   * @constructor
+   * @param {Object} node DOM element of the avatar
+   * @param {Object} [opt=null] Global/default options
+   */
   constructor(node, opt = null) {
     this.nodeAvatar = node;
     this.opt = {
@@ -71181,15 +71181,15 @@ class TalkingHead {
       ttsApikey: null,
       ttsTrimStart: 0,
       ttsTrimEnd: 400,
-      ttsLang: "fi-FI",
-      ttsVoice: "fi-FI-Standard-A",
+      ttsLang: "en-US",
+      ttsVoice: "en-US-Standard-A",
       ttsRate: 1,
       ttsPitch: 0,
       ttsVolume: 0,
       mixerGainSpeech: null,
       mixerGainBackground: null,
-      lipsyncLang: 'fi',
-      lipsyncModules: ['fi', 'en', 'lt'],
+      lipsyncLang: 'en',
+      lipsyncModules: ['en', 'fi', 'lt', 'fr'],
       pcmSampleRate: 22050,
       modelRoot: "Armature",
       modelPixelRatio: 1,
@@ -75937,6 +75937,7 @@ class TalkingHead {
     }
 
     // Animation templates for emojis
+    // noinspection JSAnnotator
     this.animEmojis = {
       '😐': {
         dt: [300, 2000],
@@ -76700,7 +76701,9 @@ class TalkingHead {
 
     // Lip-sync extensions, import dynamically
     this.lipsync = {};
-    this.opt.lipsyncModules.forEach(x => lipsyncGetProcessor(x));
+    this.opt.lipsyncModules.forEach(x => {
+      this.lipsync[x] = lipsyncGetProcessor(x);
+    });
     this.visemeNames = ['aa', 'E', 'I', 'O', 'U', 'PP', 'SS', 'TH', 'DD', 'FF', 'kk', 'nn', 'RR', 'CH', 'sil'];
 
     // Audio context and playlist
@@ -76832,9 +76835,9 @@ class TalkingHead {
   }
 
   /**
-  * Helper that re/creates the audio context and the other nodes.
-  * @param {number} sampleRate
-  */
+   * Helper that re/creates the audio context and the other nodes.
+   * @param {number} sampleRate
+   */
   initAudioGraph(sampleRate = null) {
     // Close existing context if it exists
     if (this.audioCtx && this.audioCtx.state !== 'closed') {
@@ -76879,20 +76882,20 @@ class TalkingHead {
   }
 
   /**
-  * Helper that returns the parameter or, if it is a function, its return value.
-  * @param {Any} x Parameter
-  * @return {Any} Value
-  */
+   * Helper that returns the parameter or, if it is a function, its return value.
+   * @param {Any} x Parameter
+   * @return {Any} Value
+   */
   valueFn(x) {
     return typeof x === 'function' ? x() : x;
   }
 
   /**
-  * Helper to deep copy and edit an object.
-  * @param {Object} x Object to copy and edit
-  * @param {function} [editFn=null] Callback function for editing the new object
-  * @return {Object} Deep copy of the object.
-  */
+   * Helper to deep copy and edit an object.
+   * @param {Object} x Object to copy and edit
+   * @param {function} [editFn=null] Callback function for editing the new object
+   * @return {Object} Deep copy of the object.
+   */
   deepCopy(x, editFn = null) {
     const o = JSON.parse(JSON.stringify(x));
     if (editFn && typeof editFn === "function") editFn(o);
@@ -76900,10 +76903,10 @@ class TalkingHead {
   }
 
   /**
-  * Convert a Base64 MP3 chunk to ArrayBuffer.
-  * @param {string} chunk Base64 encoded chunk
-  * @return {ArrayBuffer} ArrayBuffer
-  */
+   * Convert a Base64 MP3 chunk to ArrayBuffer.
+   * @param {string} chunk Base64 encoded chunk
+   * @return {ArrayBuffer} ArrayBuffer
+   */
   b64ToArrayBuffer(chunk) {
     // Calculate the needed total buffer length
     let bufLen = 3 * chunk.length / 4;
@@ -76938,10 +76941,10 @@ class TalkingHead {
   }
 
   /**
-  * Concatenate an array of ArrayBuffers.
-  * @param {ArrayBuffer[]} bufs Array of ArrayBuffers
-  * @return {ArrayBuffer} Concatenated ArrayBuffer
-  */
+   * Concatenate an array of ArrayBuffers.
+   * @param {ArrayBuffer[]} bufs Array of ArrayBuffers
+   * @return {ArrayBuffer} Concatenated ArrayBuffer
+   */
   concatArrayBuffers(bufs) {
     if (bufs.length === 1) return bufs[0];
     let len = 0;
@@ -76959,11 +76962,11 @@ class TalkingHead {
   }
 
   /**
-  * Convert PCM buffer to AudioBuffer.
-  * NOTE: Only signed 16bit little endian supported.
-  * @param {ArrayBuffer} buf PCM buffer
-  * @return {AudioBuffer} AudioBuffer
-  */
+   * Convert PCM buffer to AudioBuffer.
+   * NOTE: Only signed 16bit little endian supported.
+   * @param {ArrayBuffer} buf PCM buffer
+   * @return {AudioBuffer} AudioBuffer
+   */
   pcmToAudioBuffer(buf) {
     const arr = new Int16Array(buf);
     const floats = new Float32Array(arr.length);
@@ -76976,11 +76979,11 @@ class TalkingHead {
   }
 
   /**
-  * Convert internal notation to THREE objects.
-  * NOTE: All rotations are converted to quaternions.
-  * @param {Object} p Pose
-  * @return {Object} A new pose object.
-  */
+   * Convert internal notation to THREE objects.
+   * NOTE: All rotations are converted to quaternions.
+   * @param {Object} p Pose
+   * @return {Object} A new pose object.
+   */
   propsToThreeObjects(p) {
     const r = {};
     for (let [key, val] of Object.entries(p)) {
@@ -77001,9 +77004,9 @@ class TalkingHead {
   }
 
   /**
-  * Clear 3D object.
-  * @param {Object} obj Object
-  */
+   * Clear 3D object.
+   * @param {Object} obj Object
+   */
   clearThree(obj) {
     while (obj.children.length) {
       this.clearThree(obj.children[0]);
@@ -77021,14 +77024,14 @@ class TalkingHead {
   }
 
   /**
-  * Adds a new mixed morph target based on the given sources.
-  * Note: This assumes that morphTargetsRelative === true (default for GLTF)
-  *
-  * @param {Object[]} meshes Meshes to process
-  * @param {string} name New of the new morph target (a.k.a. shape key)
-  * @param {Object} sources Object of existing morph target values, e.g. { mouthOpen: 1.0 }
-  * @param {boolean} [override=false] If true, override existing morph target
-  */
+   * Adds a new mixed morph target based on the given sources.
+   * Note: This assumes that morphTargetsRelative === true (default for GLTF)
+   *
+   * @param {Object[]} meshes Meshes to process
+   * @param {string} name New of the new morph target (a.k.a. shape key)
+   * @param {Object} sources Object of existing morph target values, e.g. { mouthOpen: 1.0 }
+   * @param {boolean} [override=false] If true, override existing morph target
+   */
   addMixedMorphTarget(meshes, name, sources, override = false) {
     meshes.forEach(x => {
       // Skip, we already have a morph target with the same name and we do not override
@@ -77086,10 +77089,10 @@ class TalkingHead {
   }
 
   /**
-  * Loader for 3D avatar model.
-  * @param {string} avatar Avatar object with 'url' property to GLTF/GLB file.
-  * @param {progressfn} [onprogress=null] Callback for progress
-  */
+   * Loader for 3D avatar model.
+   * @param {string} avatar Avatar object with 'url' property to GLTF/GLB file.
+   * @param {progressfn} [onprogress=null] Callback for progress
+   */
   async showAvatar(avatar, onprogress = null) {
     // Checkt the avatar parameter
     if (!avatar || !avatar.hasOwnProperty('url')) {
@@ -77279,26 +77282,26 @@ class TalkingHead {
   }
 
   /**
-  * Get view names.
-  * @return {string[]} Supported view names.
-  */
+   * Get view names.
+   * @return {string[]} Supported view names.
+   */
   getViewNames() {
     return ['full', 'mid', 'upper', 'head'];
   }
 
   /**
-  * Get current view.
-  * @return {string} View name.
-  */
+   * Get current view.
+   * @return {string} View name.
+   */
   getView() {
     return this.viewName;
   }
 
   /**
-  * Fit 3D object to the view.
-  * @param {string} [view=null] Camera view. If null, reset current view
-  * @param {Object} [opt=null] Options
-  */
+   * Fit 3D object to the view.
+   * @param {string} [view=null] Camera view. If null, reset current view
+   * @param {Object} [opt=null] Options
+   */
   setView(view, opt = null) {
     view = view || this.viewName;
     if (view !== 'full' && view !== 'upper' && view !== 'head' && view !== 'mid') return;
@@ -77349,9 +77352,9 @@ class TalkingHead {
   }
 
   /**
-  * Change light colors and intensities.
-  * @param {Object} opt Options
-  */
+   * Change light colors and intensities.
+   * @param {Object} opt Options
+   */
   setLighting(opt) {
     opt = opt || {};
 
@@ -77394,8 +77397,8 @@ class TalkingHead {
   }
 
   /**
-  * Render scene.
-  */
+   * Render scene.
+   */
   render() {
     if (this.isRunning) {
       this.renderer.render(this.scene, this.camera);
@@ -77403,8 +77406,8 @@ class TalkingHead {
   }
 
   /**
-  * Resize avatar.
-  */
+   * Resize avatar.
+   */
   onResize() {
     this.camera.aspect = this.nodeAvatar.clientWidth / this.nodeAvatar.clientHeight;
     this.camera.updateProjectionMatrix();
@@ -77414,9 +77417,9 @@ class TalkingHead {
   }
 
   /**
-  * Update avatar pose.
-  * @param {number} t High precision timestamp in ms.
-  */
+   * Update avatar pose.
+   * @param {number} t High precision timestamp in ms.
+   */
   updatePoseBase(t) {
     for (const [key, val] of Object.entries(this.poseTarget.props)) {
       const o = this.poseAvatar.props[key];
@@ -77436,8 +77439,8 @@ class TalkingHead {
   }
 
   /**
-  * Update avatar pose deltas
-  */
+   * Update avatar pose deltas
+   */
   updatePoseDelta() {
     for (const [key, d] of Object.entries(this.poseDelta.props)) {
       if (d.x === 0 && d.y === 0 && d.z === 0) continue;
@@ -77453,9 +77456,9 @@ class TalkingHead {
   }
 
   /**
-  * Update morph target values.
-  * @param {number} dt Delta time in ms.
-  */
+   * Update morph target values.
+   * @param {number} dt Delta time in ms.
+   */
   updateMorphTargets(dt) {
     for (let [mt, o] of Object.entries(this.mtAvatar)) {
       if (!o.needsUpdate) continue;
@@ -77650,11 +77653,11 @@ class TalkingHead {
   }
 
   /**
-  * Get given pose as a string.
-  * @param {Object} pose Pose
-  * @param {number} [prec=1000] Precision used in values
-  * @return {string} Pose as a string
-  */
+   * Get given pose as a string.
+   * @param {Object} pose Pose
+   * @param {number} [prec=1000] Precision used in values
+   * @return {string} Pose as a string
+   */
   getPoseString(pose, prec = 1000) {
     let s = '{';
     Object.entries(pose).forEach((x, i) => {
@@ -77674,10 +77677,10 @@ class TalkingHead {
   }
 
   /**
-  * Return pose template property taking into account mirror pose and gesture.
-  * @param {string} key Property key
-  * @return {Quaternion|Vector3} Position or rotation
-  */
+   * Return pose template property taking into account mirror pose and gesture.
+   * @param {string} key Property key
+   * @return {Quaternion|Vector3} Position or rotation
+   */
   getPoseTemplateProp(key) {
     const ids = key.split('.');
     let target = ids[0] + '.' + (ids[1] === 'rotation' ? 'quaternion' : ids[1]);
@@ -77717,10 +77720,10 @@ class TalkingHead {
   }
 
   /**
-  * Change body weight from current leg to another.
-  * @param {Object} p Pose properties
-  * @return {Object} Mirrored pose.
-  */
+   * Change body weight from current leg to another.
+   * @param {Object} p Pose properties
+   * @return {Object} Mirrored pose.
+   */
   mirrorPose(p) {
     const r = {};
     for (let [key, val] of Object.entries(p)) {
@@ -77744,11 +77747,11 @@ class TalkingHead {
   }
 
   /**
-  * Create a new pose.
-  * @param {Object} template Pose template
-  * @param {numeric} [ms=2000] Transition duration in ms
-  * @return {Object} A new pose object.
-  */
+   * Create a new pose.
+   * @param {Object} template Pose template
+   * @param {numeric} [ms=2000] Transition duration in ms
+   * @return {Object} A new pose object.
+   */
   poseFactory(template, ms = 2000) {
     // Pose object
     const o = {
@@ -77771,10 +77774,10 @@ class TalkingHead {
   }
 
   /**
-  * Set a new pose and start transition timer.
-  * @param {Object} template Pose template, if null update current pose
-  * @param {number} [ms=2000] Transition time in milliseconds
-  */
+   * Set a new pose and start transition timer.
+   * @param {Object} template Pose template, if null update current pose
+   * @param {number} [ms=2000] Transition time in milliseconds
+   */
   setPoseFromTemplate(template, ms = 2000) {
     // Special cases
     const isIntermediate = template && this.poseTarget && this.poseTarget.template && (this.poseTarget.template.standing && template.lying || this.poseTarget.template.lying && template.standing);
@@ -77824,20 +77827,20 @@ class TalkingHead {
   }
 
   /**
-  * Get morph target value.
-  * @param {string} mt Morph target
-  * @return {number} Value
-  */
+   * Get morph target value.
+   * @param {string} mt Morph target
+   * @return {number} Value
+   */
   getValue(mt) {
     return this.mtAvatar[mt]?.value;
   }
 
   /**
-  * Set morph target value.
-  * @param {string} mt Morph target
-  * @param {number} val Value
-  * @param {number} [ms=null] Transition time in milliseconds.
-  */
+   * Set morph target value.
+   * @param {string} mt Morph target
+   * @param {number} val Value
+   * @param {number} [ms=null] Transition time in milliseconds.
+   */
   setValue(mt, val, ms = null) {
     if (this.mtAvatar.hasOwnProperty(mt)) {
       Object.assign(this.mtAvatar[mt], {
@@ -77849,25 +77852,25 @@ class TalkingHead {
   }
 
   /**
-  * Get mood names.
-  * @return {string[]} Mood names.
-  */
+   * Get mood names.
+   * @return {string[]} Mood names.
+   */
   getMoodNames() {
     return Object.keys(this.animMoods);
   }
 
   /**
-  * Get current mood.
-  * @return {string[]} Mood name.
-  */
+   * Get current mood.
+   * @return {string[]} Mood name.
+   */
   getMood() {
     return this.opt.avatarMood;
   }
 
   /**
-  * Set mood.
-  * @param {string} s Mood name.
-  */
+   * Set mood.
+   * @param {string} s Mood name.
+   */
   setMood(s) {
     s = (s || '').trim().toLowerCase();
     if (!this.animMoods.hasOwnProperty(s)) throw new Error("Unknown mood.");
@@ -77896,18 +77899,18 @@ class TalkingHead {
   }
 
   /**
-  * Get morph target names.
-  * @return {string[]} Morph target names.
-  */
+   * Get morph target names.
+   * @return {string[]} Morph target names.
+   */
   getMorphTargetNames() {
     return ['eyesRotateX', 'eyesRotateY', ...Object.keys(this.mtAvatar)].sort();
   }
 
   /**
-  * Get baseline value for the morph target.
-  * @param {string} mt Morph target name
-  * @return {number} Value, null if not in baseline
-  */
+   * Get baseline value for the morph target.
+   * @param {string} mt Morph target name
+   * @return {number} Value, null if not in baseline
+   */
   getBaselineValue(mt) {
     if (mt === 'eyesRotateY') {
       const ll = this.getBaselineValue('eyeLookOutLeft');
@@ -77931,10 +77934,10 @@ class TalkingHead {
   }
 
   /**
-  * Set baseline for morph target.
-  * @param {string} mt Morph target name
-  * @param {number} val Value, null if to be removed from baseline
-  */
+   * Set baseline for morph target.
+   * @param {string} mt Morph target name
+   * @param {number} val Value, null if to be removed from baseline
+   */
   setBaselineValue(mt, val) {
     if (mt === 'eyesRotateY') {
       this.setBaselineValue('eyeLookOutLeft', val === null ? null : val > 0 ? val : 0);
@@ -77956,10 +77959,10 @@ class TalkingHead {
   }
 
   /**
-  * Get fixed value for the morph target.
-  * @param {string} mt Morph target name
-  * @return {number} Value, null if not fixed
-  */
+   * Get fixed value for the morph target.
+   * @param {string} mt Morph target name
+   * @return {number} Value, null if not fixed
+   */
   getFixedValue(mt) {
     if (mt === 'eyesRotateY') {
       const ll = this.getFixedValue('eyeLookOutLeft');
@@ -77983,10 +77986,10 @@ class TalkingHead {
   }
 
   /**
-  * Fix morph target.
-  * @param {string} mt Morph target name
-  * @param {number} val Value, null if to be removed
-  */
+   * Fix morph target.
+   * @param {string} mt Morph target name
+   * @param {number} val Value, null if to be removed
+   */
   setFixedValue(mt, val, ms = null) {
     if (mt === 'eyesRotateY') {
       this.setFixedValue('eyeLookOutLeft', val === null ? null : val > 0 ? val : 0, ms);
@@ -78007,14 +78010,14 @@ class TalkingHead {
   }
 
   /**
-  * Create a new animation based on an animation template.
-  * @param {Object} t Animation template
-  * @param {number} [loop=false] Number of loops, false if not looped
-  * @param {number} [scaleTime=1] Scale template times
-  * @param {number} [scaleValue=1] Scale template values
-  * @param {boolean} [noClockOffset=false] Do not apply clock offset
-  * @return {Object} New animation object.
-  */
+   * Create a new animation based on an animation template.
+   * @param {Object} t Animation template
+   * @param {number} [loop=false] Number of loops, false if not looped
+   * @param {number} [scaleTime=1] Scale template times
+   * @param {number} [scaleValue=1] Scale template values
+   * @param {boolean} [noClockOffset=false] Do not apply clock offset
+   * @return {Object} New animation object.
+   */
   animFactory(t, loop = false, scaleTime = 1, scaleValue = 1, noClockOffset = false) {
     const o = {
       template: t,
@@ -78130,15 +78133,15 @@ class TalkingHead {
   }
 
   /**
-  * Calculate the correct value based on a given time using the given function.
-  * @param {number[]} vstart Start value
-  * @param {number[]} vend End value
-  * @param {number[]} tstart Start time
-  * @param {number[]} tend End time
-  * @param {number[]} t Current time
-  * @param {function} [fun=null] Ease in/out function, null = linear
-  * @return {number} Value based on the given time.
-  */
+   * Calculate the correct value based on a given time using the given function.
+   * @param {number[]} vstart Start value
+   * @param {number[]} vend End value
+   * @param {number[]} tstart Start time
+   * @param {number[]} tend End time
+   * @param {number[]} t Current time
+   * @param {function} [fun=null] Ease in/out function, null = linear
+   * @return {number} Value based on the given time.
+   */
   valueAnimationSeq(vstart, vend, tstart, tend, t, fun = null) {
     vstart = this.valueFn(vstart);
     vend = this.valueFn(vend);
@@ -78152,13 +78155,13 @@ class TalkingHead {
   }
 
   /**
-  * Return gaussian distributed random value between start and end with skew.
-  * @param {number} start Start value
-  * @param {number} end End value
-  * @param {number} [skew=1] Skew
-  * @param {number} [samples=5] Number of samples, 1 = uniform distribution.
-  * @return {number} Gaussian random value.
-  */
+   * Return gaussian distributed random value between start and end with skew.
+   * @param {number} start Start value
+   * @param {number} end End value
+   * @param {number} [skew=1] Skew
+   * @param {number} [samples=5] Number of samples, 1 = uniform distribution.
+   * @return {number} Gaussian random value.
+   */
   gaussianRandom(start, end, skew = 1, samples = 5) {
     let r = 0;
     for (let i = 0; i < samples; i++) r += Math.random();
@@ -78166,10 +78169,10 @@ class TalkingHead {
   }
 
   /**
-  * Create a sigmoid function.
-  * @param {number} k Sharpness of ease.
-  * @return {function} Sigmoid function.
-  */
+   * Create a sigmoid function.
+   * @param {number} k Sharpness of ease.
+   * @return {function} Sigmoid function.
+   */
   sigmoidFactory(k) {
     function base(t) {
       return 1 / (1 + Math.exp(-k * t)) - 0.5;
@@ -78181,20 +78184,20 @@ class TalkingHead {
   }
 
   /**
-  * Convert value from one range to another.
-  * @param {number} value Value
-  * @param {number[]} r1 Source range
-  * @param {number[]} r2 Target range
-  * @return {number} Scaled value
-  */
+   * Convert value from one range to another.
+   * @param {number} value Value
+   * @param {number[]} r1 Source range
+   * @param {number[]} r2 Target range
+   * @return {number} Scaled value
+   */
   convertRange(value, r1, r2) {
     return (value - r1[0]) * (r2[1] - r2[0]) / (r1[1] - r1[0]) + r2[0];
   }
 
   /**
-  * Animate the avatar.
-  * @param {number} t High precision timestamp in ms.
-  */
+   * Animate the avatar.
+   * @param {number} t High precision timestamp in ms.
+   */
   animate(t) {
     // Are we running?
     if (!this.isRunning) return;
@@ -78628,8 +78631,8 @@ class TalkingHead {
   }
 
   /**
-  * Reset all the visemes
-  */
+   * Reset all the visemes
+   */
   resetLips() {
     this.visemeNames.forEach(x => {
       this.morphs.forEach(y => {
@@ -78642,36 +78645,36 @@ class TalkingHead {
   }
 
   /**
-  * Preprocess text for tts/lipsync, including:
-  * - convert symbols/numbers to words
-  * - filter out characters that should be left unspoken
-  * @param {string} s Text
-  * @param {string} lang Language
-  * @return {string} Pre-processsed text.
-  */
+   * Preprocess text for tts/lipsync, including:
+   * - convert symbols/numbers to words
+   * - filter out characters that should be left unspoken
+   * @param {string} s Text
+   * @param {string} lang Language
+   * @return {string} Pre-processsed text.
+   */
   lipsyncPreProcessText(s, lang) {
     const o = this.lipsync[lang] || Object.values(this.lipsync)[0];
     return o.preProcessText(s);
   }
 
   /**
-  * Convert words to Oculus LipSync Visemes.
-  * @param {string} word Word
-  * @param {string} lang Language
-  * @return {Lipsync} Lipsync object.
-  */
+   * Convert words to Oculus LipSync Visemes.
+   * @param {string} word Word
+   * @param {string} lang Language
+   * @return {Lipsync} Lipsync object.
+   */
   lipsyncWordsToVisemes(word, lang) {
     const o = this.lipsync[lang] || Object.values(this.lipsync)[0];
     return o.wordsToVisemes(word);
   }
 
   /**
-  * Add text to the speech queue.
-  * @param {string} s Text.
-  * @param {Options} [opt=null] Text-specific options for lipsync/TTS language, voice, rate and pitch, mood and mute
-  * @param {subtitlesfn} [onsubtitles=null] Callback when a subtitle is written
-  * @param {number[][]} [excludes=null] Array of [start, end] index arrays to not speak
-  */
+   * Add text to the speech queue.
+   * @param {string} s Text.
+   * @param {Options} [opt=null] Text-specific options for lipsync/TTS language, voice, rate and pitch, mood and mute
+   * @param {subtitlesfn} [onsubtitles=null] Callback when a subtitle is written
+   * @param {number[][]} [excludes=null] Array of [start, end] index arrays to not speak
+   */
   speakText(s, opt = null, onsubtitles = null, excludes = null) {
     opt = opt || {};
 
@@ -78812,9 +78815,9 @@ class TalkingHead {
   }
 
   /**
-  * Add emoji to speech queue.
-  * @param {string} em Emoji.
-  */
+   * Add emoji to speech queue.
+   * @param {string} em Emoji.
+   */
   async speakEmoji(em) {
     let emoji = this.animEmojis[em];
     if (emoji && emoji.link) emoji = this.animEmojis[emoji.link];
@@ -78827,9 +78830,9 @@ class TalkingHead {
   }
 
   /**
-  * Add a break to the speech queue.
-  * @param {numeric} t Duration in milliseconds.
-  */
+   * Add a break to the speech queue.
+   * @param {numeric} t Duration in milliseconds.
+   */
   async speakBreak(t) {
     this.speechQueue.push({
       break: t
@@ -78838,9 +78841,9 @@ class TalkingHead {
   }
 
   /**
-  * Callback when speech queue processes this marker.
-  * @param {markerfn} onmarker Callback function.
-  */
+   * Callback when speech queue processes this marker.
+   * @param {markerfn} onmarker Callback function.
+   */
   async speakMarker(onmarker) {
     this.speechQueue.push({
       marker: onmarker
@@ -78849,9 +78852,9 @@ class TalkingHead {
   }
 
   /**
-  * Play background audio.
-  * @param {string} url URL for the audio, stop if null.
-  */
+   * Play background audio.
+   * @param {string} url URL for the audio, stop if null.
+   */
   async playBackgroundAudio(url) {
     // Fetch audio
     let response = await fetch(url);
@@ -78868,8 +78871,8 @@ class TalkingHead {
   }
 
   /**
-  * Stop background audio.
-  */
+   * Stop background audio.
+   */
   stopBackgroundAudio() {
     try {
       this.audioBackgroundSource.stop();
@@ -78878,9 +78881,9 @@ class TalkingHead {
   }
 
   /**
-  * Setup the convolver node based on an impulse.
-  * @param {string} [url=null] URL for the impulse, dry impulse if null
-  */
+   * Setup the convolver node based on an impulse.
+   * @param {string} [url=null] URL for the impulse, dry impulse if null
+   */
   async setReverb(url = null) {
     if (url) {
       // load impulse response from file
@@ -78898,11 +78901,11 @@ class TalkingHead {
   }
 
   /**
-  * Set audio gain.
-  * @param {number} speech Gain for speech, if null do not change
-  * @param {number} [background=null] Gain for background audio, if null do not change
-  * @param {number} [fadeSecs=0] Gradual exponential fade in/out time in seconds
-  */
+   * Set audio gain.
+   * @param {number} speech Gain for speech, if null do not change
+   * @param {number} [background=null] Gain for background audio, if null do not change
+   * @param {number} [fadeSecs=0] Gradual exponential fade in/out time in seconds
+   */
   setMixerGain(speech, background = null, fadeSecs = 0) {
     if (speech !== null) {
       this.audioSpeechGainNode.gain.cancelScheduledValues(this.audioCtx.currentTime);
@@ -78925,11 +78928,11 @@ class TalkingHead {
   }
 
   /**
-  * Add audio to the speech queue.
-  * @param {Audio} r Audio message.
-  * @param {Options} [opt=null] Text-specific options for lipsyncLang
-  * @param {subtitlesfn} [onsubtitles=null] Callback when a subtitle is written
-  */
+   * Add audio to the speech queue.
+   * @param {Audio} r Audio message.
+   * @param {Options} [opt=null] Text-specific options for lipsyncLang
+   * @param {subtitlesfn} [onsubtitles=null] Callback when a subtitle is written
+   */
   speakAudio(r, opt = null, onsubtitles = null) {
     opt = opt || {};
     const lipsyncLang = opt.lipsyncLang || this.avatar.lipsyncLang || this.opt.lipsyncLang;
@@ -79047,9 +79050,9 @@ class TalkingHead {
   }
 
   /**
-  * Play audio playlist using Web Audio API.
-  * @param {boolean} [force=false] If true, forces to proceed
-  */
+   * Play audio playlist using Web Audio API.
+   * @param {boolean} [force=false] If true, forces to proceed
+   */
   async playAudio(force = false) {
     if (!this.armature || this.isAudioPlaying && !force) return;
     this.isAudioPlaying = true;
@@ -79113,10 +79116,10 @@ class TalkingHead {
   }
 
   /**
-  * Take the next queue item from the speech queue, convert it to text, and
-  * load the audio file.
-  * @param {boolean} [force=false] If true, forces to proceed (e.g. after break)
-  */
+   * Take the next queue item from the speech queue, convert it to text, and
+   * load the audio file.
+   * @param {boolean} [force=false] If true, forces to proceed (e.g. after break)
+   */
   async startSpeaking(force = false) {
     if (!this.armature || this.isSpeaking && !force) return;
     this.stateName = 'speaking';
@@ -79290,8 +79293,8 @@ class TalkingHead {
   }
 
   /**
-  * Pause speaking.
-  */
+   * Pause speaking.
+   */
   pauseSpeaking() {
     try {
       this.audioSpeechSource.stop();
@@ -79308,8 +79311,8 @@ class TalkingHead {
   }
 
   /**
-  * Stop speaking and clear the speech queue.
-  */
+   * Stop speaking and clear the speech queue.
+   */
   stopSpeaking() {
     try {
       this.audioSpeechSource.stop();
@@ -79327,12 +79330,12 @@ class TalkingHead {
   }
 
   /**
-  * Start streaming mode.
-  * @param opt optional settings inlcude gain, sampleRate, lipsyncLang, and lipsyncType
-  * @onAudioStart optional callback when audio playback starts
-  * @onAudioEnd optional callback when audio streaming is automatically ended.
-  * @onSubtitles optional callback to play subtitles
-  */
+   * Start streaming mode.
+   * @param opt optional settings inlcude gain, sampleRate, lipsyncLang, and lipsyncType
+   * @onAudioStart optional callback when audio playback starts
+   * @onAudioEnd optional callback when audio streaming is automatically ended.
+   * @onSubtitles optional callback to play subtitles
+   */
   async streamStart(opt = {}, onAudioStart = null, onAudioEnd = null, onSubtitles = null) {
     this.stopSpeaking(); // Stop the speech queue mode
 
@@ -79405,9 +79408,9 @@ class TalkingHead {
   }
 
   /**
-  * Notify if no more streaming data is coming.
-  * Actual stop occurs after audio playback.
-  */
+   * Notify if no more streaming data is coming.
+   * Actual stop occurs after audio playback.
+   */
   streamNotifyEnd() {
     if (!this.isStreaming || !this.streamWorkletNode) return;
     this.streamWorkletNode.port.postMessage({
@@ -79442,10 +79445,10 @@ class TalkingHead {
   }
 
   /**
-  * Processes all lipsync data items currently in the streamLipsyncQueue.
-  * This is called once the actual audio start time is known.
-  * @private
-  */
+   * Processes all lipsync data items currently in the streamLipsyncQueue.
+   * This is called once the actual audio start time is known.
+   * @private
+   */
   _processStreamLipsyncQueue() {
     // console.log(`[TalkingHead] Processing ${this.streamLipsyncQueue.length} queued lipsync items.`);
     while (this.streamLipsyncQueue.length > 0) {
@@ -79544,9 +79547,9 @@ class TalkingHead {
   }
 
   /**
-  * stream audio and lipsync. Audio must be in 16 bit PCM format.
-  * @param r Audio object with viseme data.
-  */
+   * stream audio and lipsync. Audio must be in 16 bit PCM format.
+   * @param r Audio object with viseme data.
+   */
   streamAudio(r) {
     if (!this.isStreaming || !this.streamWorkletNode) return;
     if (r.audio instanceof ArrayBuffer) {
@@ -79568,9 +79571,9 @@ class TalkingHead {
   }
 
   /**
-  * Make eye contact.
-  * @param {number} t Time in milliseconds
-  */
+   * Make eye contact.
+   * @param {number} t Time in milliseconds
+   */
   makeEyeContact(t) {
     this.animQueue.push(this.animFactory({
       name: 'eyecontact',
@@ -79582,9 +79585,9 @@ class TalkingHead {
   }
 
   /**
-  * Look ahead.
-  * @param {number} t Time in milliseconds
-  */
+   * Look ahead.
+   * @param {number} t Time in milliseconds
+   */
   lookAhead(t) {
     if (t) {
       // Randomize head/eyes ratio
@@ -79618,9 +79621,9 @@ class TalkingHead {
   }
 
   /**
-  * Turn head and eyes to look at the camera.
-  * @param {number} t Time in milliseconds
-  */
+   * Turn head and eyes to look at the camera.
+   * @param {number} t Time in milliseconds
+   */
   lookAtCamera(t) {
     if (this.avatar.hasOwnProperty('avatarIgnoreCamera')) {
       if (this.avatar.avatarIgnoreCamera) {
@@ -79636,11 +79639,11 @@ class TalkingHead {
   }
 
   /**
-  * Turn head and eyes to look at the point (x,y).
-  * @param {number} x X-coordinate relative to visual viewport
-  * @param {number} y Y-coordinate relative to visual viewport
-  * @param {number} t Time in milliseconds
-  */
+   * Turn head and eyes to look at the point (x,y).
+   * @param {number} x X-coordinate relative to visual viewport
+   * @param {number} y Y-coordinate relative to visual viewport
+   * @param {number} t Time in milliseconds
+   */
   lookAt(x, y, t) {
     // Eyes position
     const rect = this.nodeAvatar.getBoundingClientRect();
@@ -79709,11 +79712,11 @@ class TalkingHead {
   }
 
   /**
-  * Set the closest hand to touch at (x,y).
-  * @param {number} x X-coordinate relative to visual viewport
-  * @param {number} y Y-coordinate relative to visual viewport
-  * @return {Boolean} If true, (x,y) touch the avatar
-  */
+   * Set the closest hand to touch at (x,y).
+   * @param {number} x X-coordinate relative to visual viewport
+   * @param {number} y Y-coordinate relative to visual viewport
+   * @return {Boolean} If true, (x,y) touch the avatar
+   */
   touchAt(x, y) {
     const rect = this.nodeAvatar.getBoundingClientRect();
     const pointer = new Vector2((x - rect.left) / rect.width * 2 - 1, -((y - rect.top) / rect.height) * 2 + 1);
@@ -79809,10 +79812,10 @@ class TalkingHead {
   }
 
   /**
-  * Talk with hands.
-  * @param {number} [delay=0] Delay in milliseconds
-  * @param {number} [prob=1] Probability of hand movement
-  */
+   * Talk with hands.
+   * @param {number} [delay=0] Delay in milliseconds
+   * @param {number} [prob=1] Probability of hand movement
+   */
   speakWithHands(delay = 0, prob = 0.5) {
     // Only if we are standing and not bending and probabilities match up
     if (this.mixer || this.gesture || !this.poseTarget.template.standing || this.poseTarget.template.bend || Math.random() > prob) return;
@@ -79913,17 +79916,17 @@ class TalkingHead {
   }
 
   /**
-  * Get slowdown.
-  * @return {numeric} Slowdown factor.
-  */
+   * Get slowdown.
+   * @return {numeric} Slowdown factor.
+   */
   getSlowdownRate(k) {
     return this.animSlowdownRate;
   }
 
   /**
-  * Set slowdown.
-  * @param {numeric} k Slowdown factor.
-  */
+   * Set slowdown.
+   * @param {numeric} k Slowdown factor.
+   */
   setSlowdownRate(k) {
     this.animSlowdownRate = k;
     this.audioSpeechSource.playbackRate.value = 1 / this.animSlowdownRate;
@@ -79931,25 +79934,25 @@ class TalkingHead {
   }
 
   /**
-  * Get autorotate speed.
-  * @return {numeric} Autorotate speed.
-  */
+   * Get autorotate speed.
+   * @return {numeric} Autorotate speed.
+   */
   getAutoRotateSpeed(k) {
     return this.controls.autoRotateSpeed;
   }
 
   /**
-  * Set autorotate.
-  * @param {numeric} speed Autorotate speed, e.g. value 2 = 30 secs per orbit at 60fps.
-  */
+   * Set autorotate.
+   * @param {numeric} speed Autorotate speed, e.g. value 2 = 30 secs per orbit at 60fps.
+   */
   setAutoRotateSpeed(speed) {
     this.controls.autoRotateSpeed = speed;
     this.controls.autoRotate = speed > 0;
   }
 
   /**
-  * Start animation cycle.
-  */
+   * Start animation cycle.
+   */
   start() {
     if (this.armature && this.isRunning === false) {
       this.audioCtx.resume();
@@ -79960,19 +79963,19 @@ class TalkingHead {
   }
 
   /**
-  * Stop animation cycle.
-  */
+   * Stop animation cycle.
+   */
   stop() {
     this.isRunning = false;
     this.audioCtx.suspend();
   }
 
   /**
-  * Start listening incoming audio.
-  * @param {AnalyserNode} analyzer Analyzer node for incoming audio
-  * @param {Object} [opt={}] Options
-  * @param {function} [onchange=null] Callback function for start
-  */
+   * Start listening incoming audio.
+   * @param {AnalyserNode} analyzer Analyzer node for incoming audio
+   * @param {Object} [opt={}] Options
+   * @param {function} [onchange=null] Callback function for start
+   */
   startListening(analyzer, opt = {}, onchange = null) {
     this.listeningAnalyzer = analyzer;
     this.listeningAnalyzer.fftSize = 256;
@@ -79994,20 +79997,20 @@ class TalkingHead {
   }
 
   /**
-  * Stop animation cycle.
-  */
+   * Stop animation cycle.
+   */
   stopListening() {
     this.isListening = false;
   }
 
   /**
-  * Play RPM/Mixamo animation clip.
-  * @param {string|Object} url URL to animation file FBX
-  * @param {progressfn} [onprogress=null] Callback for progress
-  * @param {number} [dur=10] Duration in seconds, but at least once
-  * @param {number} [ndx=0] Index of the clip
-  * @param {number} [scale=0.01] Position scale factor
-  */
+   * Play RPM/Mixamo animation clip.
+   * @param {string|Object} url URL to animation file FBX
+   * @param {progressfn} [onprogress=null] Callback for progress
+   * @param {number} [dur=10] Duration in seconds, but at least once
+   * @param {number} [ndx=0] Index of the clip
+   * @param {number} [scale=0.01] Position scale factor
+   */
   async playAnimation(url, onprogress = null, dur = 10, ndx = 0, scale = 0.01) {
     if (!this.armature) return;
     let item = this.animClips.find(x => x.url === url + '-' + ndx);
@@ -80089,8 +80092,8 @@ class TalkingHead {
   }
 
   /**
-  * Stop running animations.
-  */
+   * Stop running animations.
+   */
   stopAnimation() {
     // Stop mixer
     this.mixer = null;
@@ -80117,13 +80120,13 @@ class TalkingHead {
   }
 
   /**
-  * Play RPM/Mixamo pose.
-  * @param {string|Object} url Pose name | URL to FBX
-  * @param {progressfn} [onprogress=null] Callback for progress
-  * @param {number} [dur=5] Duration of the pose in seconds
-  * @param {number} [ndx=0] Index of the clip
-  * @param {number} [scale=0.01] Position scale factor
-  */
+   * Play RPM/Mixamo pose.
+   * @param {string|Object} url Pose name | URL to FBX
+   * @param {progressfn} [onprogress=null] Callback for progress
+   * @param {number} [dur=5] Duration of the pose in seconds
+   * @param {number} [ndx=0] Index of the clip
+   * @param {number} [scale=0.01] Position scale factor
+   */
   async playPose(url, onprogress = null, dur = 5, ndx = 0, scale = 0.01) {
     if (!this.armature) return;
 
@@ -80193,20 +80196,20 @@ class TalkingHead {
   }
 
   /**
-  * Stop the pose. (Functionality is the same as in stopAnimation.)
-  */
+   * Stop the pose. (Functionality is the same as in stopAnimation.)
+   */
   stopPose() {
     this.stopAnimation();
   }
 
   /**
-  * Play a gesture, which is either a hand gesture, an emoji animation or their
-  * combination.
-  * @param {string} name Gesture name
-  * @param {number} [dur=3] Duration of the gesture in seconds
-  * @param {boolean} [mirror=false] Mirror gesture
-  * @param {number} [ms=1000] Transition time in milliseconds
-  */
+   * Play a gesture, which is either a hand gesture, an emoji animation or their
+   * combination.
+   * @param {string} name Gesture name
+   * @param {number} [dur=3] Duration of the gesture in seconds
+   * @param {boolean} [mirror=false] Mirror gesture
+   * @param {number} [ms=1000] Transition time in milliseconds
+   */
   playGesture(name, dur = 3, mirror = false, ms = 1000) {
     if (!this.armature) return;
 
@@ -80295,9 +80298,9 @@ class TalkingHead {
   }
 
   /**
-  * Stop the gesture.
-  * @param {number} [ms=1000] Transition time in milliseconds
-  */
+   * Stop the gesture.
+   * @param {number} [ms=1000] Transition time in milliseconds
+   */
   stopGesture(ms = 1000) {
     // Stop gesture timer
     if (this.gestureTimeout) {
@@ -80326,14 +80329,14 @@ class TalkingHead {
   }
 
   /**
-  * Cyclic Coordinate Descent (CCD) Inverse Kinematic (IK) algorithm.
-  * Adapted from:
-  * https://github.com/mrdoob/three.js/blob/master/examples/jsm/animation/CCDIKSolver.js
-  * @param {Object} ik IK configuration object
-  * @param {Vector3} [target=null] Target coordinate, if null return to template
-  * @param {Boolean} [relative=false] If true, target is relative to root
-  * @param {numeric} [d=null] If set, apply in d milliseconds
-  */
+   * Cyclic Coordinate Descent (CCD) Inverse Kinematic (IK) algorithm.
+   * Adapted from:
+   * https://github.com/mrdoob/three.js/blob/master/examples/jsm/animation/CCDIKSolver.js
+   * @param {Object} ik IK configuration object
+   * @param {Vector3} [target=null] Target coordinate, if null return to template
+   * @param {Boolean} [relative=false] If true, target is relative to root
+   * @param {numeric} [d=null] If set, apply in d milliseconds
+   */
   ikSolve(ik, target = null, relative = false, d = null) {
     const targetVec = new Vector3();
     const effectorPos = new Vector3();
