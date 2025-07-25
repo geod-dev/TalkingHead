@@ -231,7 +231,7 @@ class LipsyncEn {
     this.visemeDurations = {
       'aa': 0.95, 'E': 0.90, 'I': 0.92, 'O': 0.96, 'U': 0.95, 'PP': 1.08,
       'SS': 1.23, 'TH': 1, 'DD': 1.05, 'FF': 1.00, 'kk': 1.21, 'nn': 0.88,
-      'RR': 0.88, 'DD': 1.05, 'sil': 1
+      'RR': 0.88, 'sil': 1
     };
 
     // Pauses in relative units (1=average)
@@ -302,7 +302,7 @@ class LipsyncEn {
       return this.tens[Math.floor(num/10)]+" "+this.ones[num%10];
     }
   }
- 
+
   convertNumberToWords(num){
     if(num == "0"){
       return "zero";

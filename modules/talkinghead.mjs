@@ -31,6 +31,7 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import Stats from 'three/addons/libs/stats.module.js';
 
 import{ DynamicBones } from './dynamicbones.mjs';
+import {lipsyncGetProcessor} from "./lipsync.js";
 const workletUrl = new URL('./playback-worklet.js', import.meta.url);
 
 // Temporary objects for animation loop
@@ -750,7 +751,7 @@ class TalkingHead {
 
     // Lip-sync extensions, import dynamically
     this.lipsync = {};
-    this.opt.lipsyncModules.forEach( x => this.lipsyncGetProcessor(x) );
+    this.opt.lipsyncModules.forEach( x => lipsyncGetProcessor(x) );
     this.visemeNames = [
       'aa', 'E', 'I', 'O', 'U', 'PP', 'SS', 'TH', 'DD', 'FF', 'kk',
       'nn', 'RR', 'CH', 'sil'
@@ -905,7 +906,7 @@ class TalkingHead {
     } else {
       this.audioCtx = new AudioContext();
     }
-    
+
     // Create audio nodes
     this.audioSpeechSource = this.audioCtx.createBufferSource();
     this.audioBackgroundSource = this.audioCtx.createBufferSource();
@@ -918,21 +919,21 @@ class TalkingHead {
     this.audioAnalyzerNode.minDecibels = -70;
     this.audioAnalyzerNode.maxDecibels = -10;
     this.audioReverbNode = this.audioCtx.createConvolver();
-    
+
     // Connect nodes
     this.audioBackgroundGainNode.connect(this.audioReverbNode);
     this.audioAnalyzerNode.connect(this.audioSpeechGainNode);
     this.audioSpeechGainNode.connect(this.audioReverbNode);
     this.audioStreamGainNode.connect(this.audioReverbNode);
     this.audioReverbNode.connect(this.audioCtx.destination);
-    
+
     // Apply reverb and mixer settings
     this.setReverb(this.currentReverb || null);
     this.setMixerGain(
-      this.opt.mixerGainSpeech, 
+      this.opt.mixerGainSpeech,
       this.opt.mixerGainBackground
     );
-    
+
     // Reset stream worklet loaded flag to reload with the new context
     this.workletLoaded = false;
   }
@@ -1085,19 +1086,19 @@ class TalkingHead {
   /**
   * Adds a new mixed morph target based on the given sources.
   * Note: This assumes that morphTargetsRelative === true (default for GLTF)
-  * 
+  *
   * @param {Object[]} meshes Meshes to process
   * @param {string} name New of the new morph target (a.k.a. shape key)
   * @param {Object} sources Object of existing morph target values, e.g. { mouthOpen: 1.0 }
   * @param {boolean} [override=false] If true, override existing morph target
   */
   addMixedMorphTarget(meshes, name, sources, override=false ) {
-  
+
     meshes.forEach( x => {
 
       // Skip, we already have a morph target with the same name and we do not override
       if ( !override && x.morphTargetDictionary.hasOwnProperty(name) ) return;
-      
+
       // Check if this mesh has any sources to add to the mix
       const g = x.geometry;
       let mixPos = null;
@@ -2667,21 +2668,6 @@ class TalkingHead {
   }
 
   /**
-  * Get lip-sync processor based on language. Import module dynamically.
-  * @param {string} lang Language
-  * @param {string} [path="./"] Module path
-  */
-  lipsyncGetProcessor(lang, path="./") {
-    if ( !this.lipsync.hasOwnProperty(lang) ) {
-      const moduleName = path + 'lipsync-' + lang.toLowerCase() + '.mjs';
-      const className = 'Lipsync' + lang.charAt(0).toUpperCase() + lang.slice(1);
-      import(moduleName).then( module => {
-        this.lipsync[lang] = new module[className];
-      });
-    }
-  }
-
-  /**
   * Preprocess text for tts/lipsync, including:
   * - convert symbols/numbers to words
   * - filter out characters that should be left unspoken
@@ -3375,7 +3361,7 @@ class TalkingHead {
     this.streamLipsyncLang = opt.lipsyncLang || this.streamLipsyncLang || this.avatar.lipsyncLang || this.opt.lipsyncLang;
 
     if (opt.sampleRate !== undefined) {
-      const sr = opt.sampleRate;    
+      const sr = opt.sampleRate;
       if (
         typeof sr === 'number' &&
         sr >= 8000 &&
@@ -3390,7 +3376,7 @@ class TalkingHead {
         );
       }
     }
-    
+
     if (opt.gain !== undefined) {
       this.audioStreamGainNode.gain.value = opt.gain;
     }
@@ -3398,7 +3384,7 @@ class TalkingHead {
     if (!this.workletLoaded) {
       try {
         const loadPromise = this.audioCtx.audioWorklet.addModule(workletUrl.href);
-        const timeoutPromise = new Promise((_, reject) => 
+        const timeoutPromise = new Promise((_, reject) =>
           setTimeout(() => reject(new Error("Worklet loading timed out")), 5000)
         );
         await Promise.race([loadPromise, timeoutPromise]);
@@ -3411,11 +3397,11 @@ class TalkingHead {
 
     // Create and connect worklet node
     this.streamWorkletNode = new AudioWorkletNode(this.audioCtx, 'playback-worklet');
-    
+
     // Connect worklet through stream gain node for volume control
     this.streamWorkletNode.connect(this.audioStreamGainNode);
     this.streamWorkletNode.connect(this.audioAnalyzerNode);
-  
+
     this.streamWorkletNode.port.onmessage = (event) => {
 
       if(event.data.type === 'playback-started') {
@@ -3468,9 +3454,9 @@ class TalkingHead {
       try {
         this.streamWorkletNode.port.postMessage({type: 'stop'});
         this.streamWorkletNode.disconnect();
-      } catch(e) { 
+      } catch(e) {
         console.error('Error disconnecting streamWorkletNode:', e);
-        /* ignore */ 
+        /* ignore */
       }
       this.streamWorkletNode = null;
     }

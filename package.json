@@ -1,0 +1,17 @@
+{
+  "name": "@geod-dev/talkinghead",
+  "version": "1.5.0",
+  "description": "Talking Head (3D): A JavaScript class for real-time lip-sync using Ready Player Me full-body 3D avatars.",
+  "main": "modules/talkinghead.mjs",
+  "types": "types/talkinghead.d.ts",
+  "files": [
+    "README.md",
+    "LICENSE",
+    "modules/*",
+    "types/*"
+  ],
+  "dependencies": {
+    "three": "^0.178.0"
+  },
+  "license": "MIT"
+}
