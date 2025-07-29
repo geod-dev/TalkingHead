@@ -1,4 +1,4 @@
-class PlaybackWorklet extends AudioWorkletProcessor {
+export const PlaybackWorklet = `class PlaybackWorklet extends AudioWorkletProcessor {
   constructor() {
     super();
     this.port.onmessage = this.handleMessage.bind(this);
@@ -145,3 +145,4 @@ class PlaybackWorklet extends AudioWorkletProcessor {
 }
 
 registerProcessor("playback-worklet", PlaybackWorklet);
+`

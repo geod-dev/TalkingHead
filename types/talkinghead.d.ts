@@ -28,10 +28,10 @@ declare module '@geod-dev/talkinghead' {
 
     interface StreamStartOptions {
         sampleRate: number
-        gain: number
-        lipsyncLang: string
-        lipsyncType: 'visemes' | 'blendshapes' | 'words'
-        mood: Mood
+        gain?: number
+        lipsyncLang?: string
+        lipsyncType?: 'visemes' | 'blendshapes' | 'words'
+        mood?: Mood
     }
 
     interface SpeakAudioOptions {
@@ -50,7 +50,7 @@ declare module '@geod-dev/talkinghead' {
 
 
     interface StreamAudioOptions {
-        audio: ArrayBuffer | Uint8Array | Uint16Array
+        audio: AudioBuffer | AudioBuffer[]
         visemes?: any
         vtimes?: number[]
         vdurations?: number[]
@@ -127,9 +127,9 @@ declare module '@geod-dev/talkinghead' {
 
     interface Audio {
         audio: ArrayBuffer | ArrayBuffer[]
-        words: string[]
-        wtimes: number[]
-        wdurations: number[]
+        words?: string[]
+        wtimes?: number[]
+        wdurations?: number[]
         visemes?: string[]
         vtimes?: number[]
         vdurations?: number[]

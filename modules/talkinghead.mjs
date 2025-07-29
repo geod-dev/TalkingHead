@@ -32,8 +32,10 @@ import Stats from 'three/addons/libs/stats.module.js';
 
 import {DynamicBones} from './dynamicbones.mjs';
 import {lipsyncGetProcessor} from "./lipsync.js";
+import {PlaybackWorklet} from "./playback-worklet.js";
 
-const workletUrl = new URL('./playback-worklet.js', import.meta.url);
+const playbackWorkletBlob = new Blob([PlaybackWorklet], { type: 'application/javascript' });
+const playbackWorkletUrl = URL.createObjectURL(playbackWorkletBlob)
 
 // Temporary objects for animation loop
 const q = new THREE.Quaternion();
@@ -4975,7 +4977,7 @@ class TalkingHead {
 
         if (!this.workletLoaded) {
             try {
-                const loadPromise = this.audioCtx.audioWorklet.addModule(workletUrl.href);
+                const loadPromise = this.audioCtx.audioWorklet.addModule(playbackWorkletUrl);
                 const timeoutPromise = new Promise((_, reject) =>
                     setTimeout(() => reject(new Error("Worklet loading timed out")), 5000)
                 );
